@@ -18,15 +18,13 @@ jobs:
     vmImage: vs2017-win2016
   steps:
     - template: az-pipeline/unstable/rustup.yml@templates
-    - script: cargo build
-    - script: cargo test
+    - template: build/cargo-steps.yml
 - job: MacOS
   pool:
     vmImage: macOS-10.13
   steps:
     - template: az-pipeline/unstable/rustup.yml@templates
-    - script: cargo build
-    - script: cargo test
+    - template: build/cargo-steps.yml
 - job: Linux
   pool:
     vmImage: ubuntu-16.04
@@ -44,5 +42,4 @@ jobs:
     - template: az-pipeline/unstable/rustup.yml@templates
       parameters:
         rustup_toolchain: $(rustup_toolchain)
-    - script: cargo build
-    - script: cargo test
+    - template: build/cargo-steps.yml
